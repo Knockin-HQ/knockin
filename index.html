@@ -1,67 +1,93 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
+<head id="home">
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Archivo Black' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
 </head>
 <body>
-    <a id="header" href="https://knockin.tech/" style="position:relative; top:5%; left:3%"><img class="icon" src="assets/sqlogo.svg"></a>
+    <ul id="navbar">
+        <li style="float:left"><a class="navlink" id="header" href="#home" style="position:relative; top:5%; left:3%"><img class="icon" src="assets/sqlogo.svg"></a></li>
+        <li><a class="navlink" href="#about active">About</a></li>
+        <li><a class="navlink" href="#contact">Contact</a></li>
+    </ul>
 
-    <div class="section1" style="position:absolute; text-align:center; align-content:center; top:20%; width:50%; left:25%; display:inline-block">
-        <h1 style="width:80%; position:relative; left:10%; text-align:center">Find and schedule events in one place</h1>
-        <p style="text-align: center; display:inline">
-            Young professionals use
-        <p style="display: inline" class="special"> Knockin </p>
-        <p style="display: inline">
-            to simplify their event search and scheduling process,
-            eliminating the need for hours of browsing and endless tab jumping or scrolling.
-        </p>
-        <div class="spacing" style="top:50%;">
-            <br />
-        </div>
-        <button>
-            <a style="text-decoration:none; color:white;" href="https://calendar.app.google/RwhcAeVuk3QtTe8Z7">
-                <h2 style="display:inline">
-                    BOOK A DEMO
-                </h2>
-            </a>
-        </button>
-        </p>
-        <div class="section2" style="position:relative; top:200px; left:-50%;">
-            <h2 style="text-align:left; margin-left:5%">
-                HOW IT WORKS
-            </h2>
-            <p style="text-align:left; margin-left:5%">
-                Step 1. Select the times you're available.
-            </p>
+    <div class="outer home">
+            <div class="inner section1" style="margin-block: 2vw; text-align:center; align-content: center;">
+                <div style="width: 65%; max-width: fit-content; margin-left: auto; margin-right: auto;">
+                    <h1>Find and schedule events in one place</h1>
+                </div>
 
-            <img class="visual" src="assets/1.gif" style="width:150%; display:block; position: relative; left:25%">
-            </h2>
-            <p style="text-align:left; margin-left:5%">
-                Step 2. Pick your interests.
-            </p>
+                <div style="width: 70%; max-width: fit-content; margin-left: auto; margin-right: auto;">
+                    <p style="display:inline">
+                        Young professionals use
+                    </p>
+                    <p style="margin-block: 2vw; display: inline" class="special"> Knockin </p>
+                    <p style="display:inline">
+                        to simplify their event search and scheduling process,
+                        eliminating the need for hours of browsing and endless tab jumping or scrolling.
+                    </p>
+                </div>
+                
+                <div>
+                    <button style="display: inline-grid; margin-block:2vw">
+                        <a style="display:inline; text-decoration:none; color:white;" href="https://calendar.app.google/RwhcAeVuk3QtTe8Z7">
+                            <h2 style="line-height: 50%; display: inline-flex; align-content: center; align-items: center ">
+                                BOOK A DEMO
+                            </h2>
+                        </a>
+                    </button>
+                </div>
+            </div>
 
-            <img class="visual" src="assets/2.svg" style="width:50; display:block; position: relative; left:75%">
-            </h2>
-            <p style="text-align:left; margin-left:5%">
-                Step 3. Choose an event to add to your calendar.
-            </p>
+            <div id="about" class="inner section2" style="margin-block: 2vw; text-align:center; align-content: center;">
+                <div class="calendar-container" id="calendar-container" style="font-family:'Rubik';">
+                    <br />
+                    <br />
+                    <div class="calendar-header" id="calendar-header">
+                        <div class="calendar-title" id="calendar-title"></div>
+                        <div class="calendar-actions" id="calendar-actions" style="display:inline-block">
+                            <button style="width:10%" class="calendar-action-button" id="calendar-action-button-prev">
+                                &lt;
+                            </button>
+                            <button style="font-weight:bold; width:40%" class="calendar-action-button-custom" id="calendar-action-button-today">
+                                TODAY
+                            </button>
+                            <button style="width:10%" class="calendar-action-button" id="calendar-action-button-next">
+                                &gt;
+                            </button>
+                        </div>
+                    </div>
+                    <div class="calendar" id="calendar">
+                        <div class="calendar-days" id="calendar-days">
+                        </div>
+                        <div class="calendar-body" id="calendar-body">
+                        </div>
+                    </div>
+                </div>
+                <script type="module" src="index.js" async defer></script>
+            </div>
 
-            <img class="visual" src="assets/3.svg" style="width:50; display:block; position: relative; left:75%">
-
-            <p style="text-align:left; margin-left:5%; margin-top:10%; margin-bottom:30px">
-                Contact us at eh111@wellesley.edu and yw4@wellesley.edu
-            </p>
-            <br />
-
-        </div>
+            <div id="contact" class="inner section3">
+                <p style="text-align:left; margin-left:5%; margin-top:10%; margin-bottom:30px">
+                    Contact us at eh111@wellesley.edu and yw4@wellesley.edu
+                </p>
+                <br />
+            </div>
     </div>
-   
-
-    
-
-
 </body>
+
+<script>
+    // Add active class to the current button (highlight it)
+    var navbar = document.getElementById("navbar");
+    var links = header.getElementsByClassName("navlink");
+    for (var i = 0; i < links.length; i++) {
+        links[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+        });
+    }
+</script>
 </html>
