@@ -244,7 +244,7 @@ table {
     --calendar-border-color: #e5e5e5;
     --calendar-weekend-color: #e5e5e580;
     --text-color: #333333;
-    --today-color: #ff0000;
+    --today-color: #E32800;
     --today-text-color: #ffffff;
     --calendar-max-width: -webkit-fill-available;
     --font-size: 1rem;
@@ -536,6 +536,18 @@ table {
         color:white;
     }
 
+.calendar-action-button {
+    border-radius: 100%;
+    background-color: white;
+    color: #E32800;
+}
+
+    .calendar-action-button:hover {
+        border-radius: 100%;
+        opacity:70%;
+        background-color: #E32800;
+        color: rgba(255,255,255,1)
+    }
 
 @media (max-width: 768px) {
     .calendar-day-number {
@@ -570,6 +582,10 @@ table {
         max-width: var(--calendar-cell-width);
         width: 10vw;
     }
+    .calendar-body-column:hover {
+        opacity: 50%;
+        background-color:black;
+    }
 
     .calendar-timeline-column {
         max-width: var(--timeline-width);
@@ -588,4 +604,5 @@ table {
         display:block;
         position:relative;
     }
+
 }

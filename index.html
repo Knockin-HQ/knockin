@@ -43,28 +43,57 @@
 
             <div id="about" class="inner section2" style="margin-block: 2vw; text-align:center; align-content: center;">
                 <div class="calendar-container" id="calendar-container" style="font-family:'Rubik';">
-                    <br />
-                    <br />
+
                     <div class="calendar-header" id="calendar-header">
                         <div class="calendar-title" id="calendar-title"></div>
-                        <div class="calendar-actions" id="calendar-actions" style="display:inline-block">
-                            <button style="width:10%" class="calendar-action-button" id="calendar-action-button-prev">
+                        <div class="calendar-actions" id="calendar-actions" style="display:inline-block;">
+                            <button style="width:2rem;" class="calendar-action-button" id="calendar-action-button-prev">
                                 &lt;
                             </button>
                             <button style="font-weight:bold; width:40%" class="calendar-action-button-custom" id="calendar-action-button-today">
                                 TODAY
                             </button>
-                            <button style="width:10%" class="calendar-action-button" id="calendar-action-button-next">
+                            <button style="width: 2rem;" class="calendar-action-button" id="calendar-action-button-next">
                                 &gt;
                             </button>
                         </div>
                     </div>
+                    <script>
+                        var calendar = document.getElementById("calendar");
+                        console.log("found a calendar!!!");
+                        console.log(calendar)
+                        var calendarRows = document.getElementsByClassName('calendar-body-row');
+                        console.log("did we find something?")
+                        console.log(calendarRows)
+                        console.log(calendarRows[0])
+                        for (let i = 0; i < calendarRows.length; i++) {
+                            const calendarRow = calendarRows[i];
+                            console.log(calendarRow);
+
+                            const hourDiv = calendarRow.querySelector('.calendar-timeline-column');
+                            const hour = `${(parseInt(calendarRow.dataset.hour)) % 24}`.padStart(2, '0') + ':00';
+                            if (i === calendarRows.length - 1) {
+                                const lastHour = document.createElement('div');
+                                lastHour.classList.add('calendar-timeline-last-hour');
+                                const lastHourText = document.createElement('span');
+                                lastHourText.innerText = '00:00';
+                                const hourText = document.createElement('span');
+                                hourText.innerText = hour;
+                                lastHour.appendChild(hourText);
+                                lastHour.appendChild(lastHourText);
+                                hourDiv.appendChild(lastHour);
+                            } else {
+                                hourDiv.innerText = hour;
+                            }
+                        }
+                    </script>
                     <div class="calendar" id="calendar">
                         <div class="calendar-days" id="calendar-days">
                         </div>
                         <div class="calendar-body" id="calendar-body">
                         </div>
                     </div>
+
                 </div>
                 <script type="module" src="index.js" async defer></script>
             </div>
