@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Archivo Black' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+    <link rel="shortcut icon" href="#"> <!--favicon-->
 </head>
 <body>
     <ul id="navbar">
@@ -59,33 +60,52 @@
                         </div>
                     </div>
                     <script>
-                        var calendar = document.getElementById("calendar");
-                        console.log("found a calendar!!!");
-                        console.log(calendar)
-                        var calendarRows = document.getElementsByClassName('calendar-body-row');
-                        console.log("did we find something?")
-                        console.log(calendarRows)
-                        console.log(calendarRows[0])
-                        for (let i = 0; i < calendarRows.length; i++) {
-                            const calendarRow = calendarRows[i];
-                            console.log(calendarRow);
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const calendar = document.getElementById("calendar");
+                            console.log("found a calendar!!!");
+                            console.log(calendar);
+                            const calendarRows = document.getElementsByClassName('calendar-body-row');
+                            console.log(calendarRows);
+                            var arr = Array.from(calendarRows);
+                            console.log(arr);
 
-                            const hourDiv = calendarRow.querySelector('.calendar-timeline-column');
-                            const hour = `${(parseInt(calendarRow.dataset.hour)) % 24}`.padStart(2, '0') + ':00';
-                            if (i === calendarRows.length - 1) {
-                                const lastHour = document.createElement('div');
-                                lastHour.classList.add('calendar-timeline-last-hour');
-                                const lastHourText = document.createElement('span');
-                                lastHourText.innerText = '00:00';
-                                const hourText = document.createElement('span');
-                                hourText.innerText = hour;
-                                lastHour.appendChild(hourText);
-                                lastHour.appendChild(lastHourText);
-                                hourDiv.appendChild(lastHour);
-                            } else {
-                                hourDiv.innerText = hour;
+                            // using forEach
+                            arr.forEach(el => {
+                                console.log(el);
+                            });
+
+
+
+                            
+                            for (let i = 0; i < calendarRows.length; i++) {
+                                //loop has been entered!!
+                                console.log("loop", i);
                             }
-                        }
+
+                            for (let i = 0; i < calendarRows.length; i++) {
+                                const calendarRow = calendarRows[i];
+                                console.log("TESTING THE LOOP");
+                                console.log(calendarRow);
+
+                                const hourDiv = calendarRow.querySelector('.calendar-timeline-column');
+                                const hour = `${(parseInt(calendarRow.dataset.hour)) % 24}`.padStart(2, '0') + ':00';
+
+
+                                if (i === calendarRows.length - 1) {
+                                    const lastHour = document.createElement('div');
+                                    lastHour.classList.add('calendar-timeline-last-hour');
+                                    const lastHourText = document.createElement('span');
+                                    lastHourText.innerText = '00:00';
+                                    const hourText = document.createElement('span');
+                                    hourText.innerText = hour;
+                                    lastHour.appendChild(hourText);
+                                    lastHour.appendChild(lastHourText);
+                                    hourDiv.appendChild(lastHour);
+                                } else {
+                                    hourDiv.innerText = hour;
+                                }
+                            }
+                        });
                     </script>
                     <div class="calendar" id="calendar">
                         <div class="calendar-days" id="calendar-days">
