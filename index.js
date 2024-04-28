@@ -6,9 +6,6 @@ function myFunction() {
     ]
     const calendar = new Calendar(events);
    
-    for (let i = 0; i < events.length; i++) {
-        var event = events[i];
-
     const calendarBody = document.getElementById('calendar-body');
     const calendarRows = document.getElementsByClassName('calendar-body-row');
 
