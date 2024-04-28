@@ -450,6 +450,7 @@ export default class Calendar {
             this._getSunday(this.getDate()).getTime() <= this._getSunday(dateTo).getTime()
     }
 
+
     _getRandomBgColorAndTextColor() {
         const bgColors = [
             '#f44336',
