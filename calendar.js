@@ -143,21 +143,31 @@ export default class Calendar {
     }
 
     _renderEvent(event) {
-        const timeSlots = this._getDaysAndHours(event.dateFrom, event.dateTo);
+        var timeSlots = this._getDaysAndHours(event.dateFrom, event.dateTo);
+        //console.log(timeSlots);
+
         timeSlots.forEach((slot, index) => {
-            const cell = this._getCell(slot.day, slot.hour);
+            if (index > 0) {
+                return
+            }
+            const cell = this._getCell(slot.day-1, slot.hour);
             if (!cell.querySelector(`[data-event-id="${event.id}"]`)) {
                 const eventDiv = document.createElement('div');
                 eventDiv.classList.add('calendar-event');
                 eventDiv.dataset.eventId = event.id;
                 eventDiv.style.backgroundColor = event.bgColor;
                 eventDiv.style.color = event.textColor;
+                eventDiv.dataset.eventName = event.eventName;
+                eventDiv.dataset.dateFrom = event.dateFrom;
+                eventDiv.dataset.dateTo = event.dateTo;
+
+
                 this._addClicklistenerToEvent(eventDiv);
                 eventDiv.innerText = this._getEventName(event, timeSlots, index);
                 cell && cell.appendChild(eventDiv);
             }
         });
-        this._setEventStartEndSize(event);
+        this._setEventSize(event);
     }
 
     _addClicklistenerToEvent(eventDiv) {
@@ -185,11 +195,21 @@ export default class Calendar {
 
             const eventHeader = document.createElement('h1');
             eventHeader.classList.add('calendar-event-tooltip-header');
-            eventHeader.innerText = event.eventName;
+            eventHeader.innerText = eventDiv.dataset.eventName;
 
             const eventTime = document.createElement('div');
             eventTime.classList.add('calendar-event-tooltip-time');
-            eventTime.innerText = this._generateDateFromDateToString(event.dateFrom, event.dateTo);
+
+            eventTime.innerHTML = '<h1 style="width:auto;"'
+                + eventDiv.dataset.eventName
+                + '</h1>'
+                + '<p style="width:auto; margin-top:-10%;">'
+                + new Date(parseInt(eventDiv.dataset.dateFrom)).toString()
+                + '<p>'
+                + '<p style="width:auto; ">'
+                + new Date(parseInt(eventDiv.dataset.dateTo)).toString()
+                + '</p>';
+
 
             eventBody.appendChild(closeIcon);
             eventBody.appendChild(eventHeader);
@@ -206,13 +226,37 @@ export default class Calendar {
         const dateToMinute = dateTo.getMinutes().toString().padStart(2, '0');
         return `${dateFrom.toLocaleDateString()} ${dateFromHour}:${dateFromMinute} - ${dateTo.toLocaleDateString()} ${dateToHour}:${dateToMinute}`;
     }
+
+
+    _setEventSize(event){
+        const cell = this._getCell(event.col, event.row);
+        const eventDiv = cell.querySelector(`[data-event-id="${event.id}"]`);
+        if (eventDiv) {
+            
+            const marginTop = 0 ? (this._getCellHeightAsNumber() / 60) * startMinute : 0;
+            eventDiv.style.height = `${this._getCellHeightAsNumber() - marginTop}px`;
+            eventDiv.style.marginTop = `${marginTop}px`;
+        }
+
+        if (eventDiv) {
+            const marginBottom = 0 ? ((this._getCellHeightAsNumber() / 60) * (60 - endMinute)) : 0;
+            if (eventDiv.style.height) {
+                eventDiv.style.height = `calc(${eventDiv.style.height} - ${marginBottom}px)`;
+            } else {
+                eventDiv.style.height = `${this._getCellHeightAsNumber() - marginBottom}px`;
+            }
+        }
+    }
+
     _setEventStartEndSize(event) {
         // Check if event start is within this week
         if (this._isThisWeek(event.dateFrom)) {
-            const startDay = event.dateFrom.getDay();
-            const startHour = event.dateFrom.getHours();
-            const startMinute = event.dateFrom.getMinutes();
+            const startDay = new Date(event.dateFrom).getDay();
+            const startHour = new Date(event.dateFrom).getHours();
+            const startMinute = new Date(event.dateFrom).getMinutes();
             const cell = this._getCell(startDay, startHour);
+
+
             const eventDiv = cell.querySelector(`[data-event-id="${event.id}"]`);
             if (eventDiv) {
                 const marginTop = startMinute ? (this._getCellHeightAsNumber() / 60) * startMinute : 0;
@@ -223,9 +267,9 @@ export default class Calendar {
 
         // Check if event end is within this week
         if (this._isThisWeek(event.dateTo)) {
-            const endDay = event.dateTo.getDay();
-            const endHour = event.dateTo.getHours();
-            const endMinute = event.dateTo.getMinutes();
+            const endDay = new Date(event.dateTo).getDay();
+            const endHour = new Date(event.dateTo).getHours();
+            const endMinute = new Date(event.dateTo).getMinutes();
             const cell = this._getCell(endDay, endHour);
             const eventDiv = cell.querySelector(`[data-event-id="${event.id}"]`);
             if (eventDiv) {
@@ -282,9 +326,9 @@ export default class Calendar {
         dateFrom = new Date(dateFrom);
         dateTo = new Date(dateTo);
         const hours = [];
-        let currentDateFrom = dateFrom.getTime() <= this._getMonday(this.getDate()).getTime() ? this._getMonday(this.getDate()) : dateFrom;
-        let currentDateTo = dateTo.getTime() >= this._getSunday(this.getDate()).getTime() ? this._getSunday(this.getDate()) : dateTo;
-        return getDaysAndHours(currentDateFrom, currentDateTo);
+        //let currentDateFrom = dateFrom.getTime() <= this._getMonday(this.getDate()).getTime() ? this._getMonday(this.getDate()) : dateFrom;
+        //let currentDateTo = dateTo.getTime() >= this._getSunday(this.getDate()).getTime() ? this._getSunday(this.getDate()) : dateTo;
+        return getDaysAndHours(dateFrom, dateTo);
     }
 
     _resetAllColumns() {
@@ -440,7 +484,7 @@ export default class Calendar {
     _isThisWeek(date) {
         const monday = this._getMonday(this.getDate()).getTime();
         const sunday = this._getSunday(this.getDate()).getTime();
-        return date.getTime() >= monday && date.getTime() <= sunday;
+        return new Date(date).getTime() >= monday && new Date(date).getTime() <= sunday;
     }
 
 

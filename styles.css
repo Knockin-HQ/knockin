@@ -224,11 +224,6 @@ button {
 .visual{
 }
 
-@media screen and (max-width: 500px) {
-    .module {
-        width: 300px;
-    }
-}
 
 table {
     border-collapse: collapse;
@@ -480,6 +475,11 @@ table {
     margin-right: 2px;
 }
 
+.calendar-body-column:hover {
+    opacity: 10%;
+    background-color: black;
+}
+
 .calendar-event-tooltip {
     position: absolute;
     top: 0;
@@ -583,7 +583,7 @@ table {
         width: 10vw;
     }
     .calendar-body-column:hover {
-        opacity: 50%;
+        opacity: 10%;
         background-color:black;
     }
 
@@ -605,4 +605,10 @@ table {
         position:relative;
     }
 
+/*
+    @media screen and (max-width: 500px) {
+        .module {
+            width: 300px;
+        }
+    }*/
 }
