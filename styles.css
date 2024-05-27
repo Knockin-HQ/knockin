@@ -175,6 +175,50 @@ ul {
 
 
 
+input[type=checkbox] {
+    position: relative;
+    cursor: pointer;
+}
+
+    input[type=checkbox]:before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 0;
+        left: 0;
+        background-color: #e9e9e9;
+    }
+
+    input[type=checkbox]:checked:before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 0;
+        left: 0;
+        background-color: #1E80EF;
+    }
+
+    input[type=checkbox]:checked:after {
+        content: "";
+        display: block;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        position: absolute;
+        top: 2px;
+        left: 6px;
+    }
+
+
+
 .rotate {
     -webkit-animation: spin 3s linear infinite;
     -moz-animation: spin 3s linear infinite;
@@ -241,12 +285,13 @@ table {
     --text-color: #333333;
     --today-color: #E32800;
     --today-text-color: #ffffff;
-    --calendar-max-width: -webkit-fill-available;
+    --calendar-max-width: 75%;
+    /*--calendar-max-width: -webkit-fill-available;*/
     --font-size: 1rem;
     --font-family: 'Rubik', sans-serif;
     --timeline-width: 60px;
     --calendar-cell-height: 40px;
-    --calendar-cell-width: (100/7)%;
+    --calendar-cell-width: (75/7)%;
     --calendar-body-height: 600px;
 }
 
@@ -549,9 +594,22 @@ table {
         color: rgba(255,255,255,1)
     }
 
+.checksidebar {
+    width: 25%;
+    background-color: #E32800;
+    display: table-cell;
+    margin-right: -10%;
+}
+
 @media (max-width: 768px) {
     .calendar-day-number {
         display: none;
+    }
+
+    .checksidebar {
+        width: 100%;
+        margin-right: 0%;
+        display:inline-block;
     }
 
     .calendar-header {
@@ -604,6 +662,8 @@ table {
         display:block;
         position:relative;
     }
+
+
 
 /*
     @media screen and (max-width: 500px) {

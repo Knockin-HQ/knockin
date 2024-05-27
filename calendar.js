@@ -150,7 +150,7 @@ export default class Calendar {
             if (index > 0) {
                 return
             }
-            const cell = this._getCell(slot.day-1, slot.hour);
+            const cell = this._getCell(slot.day, slot.hour);
             if (!cell.querySelector(`[data-event-id="${event.id}"]`)) {
                 const eventDiv = document.createElement('div');
                 eventDiv.classList.add('calendar-event');
