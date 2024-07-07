@@ -220,14 +220,14 @@
                                 </form>
                                 <script>
                                     const scriptURL = "https://script.google.com/macros/s/AKfycbzKpX85B1uLHzJOFSPgVZMrQOvRr_r6ynQTC_HKcxXSIFJw2aMbUMrSIyKcpAAmMkmg/exec"
-                                    const form = document.forms['submit-to-google-sheet']
+                                    const form = document.getElementById("EmailForm");
 
                                     form.addEventListener('submit', e => {
                                         e.preventDefault()
                                         fetch(scriptURL, { method: 'POST', body: new FormData(form) })
                                             .then(response => console.log('Success!', response))
                                             .catch(error => console.error('Error!', error.message))
-                                        document.getElementById("EmailForm").reset();
+                                       
                                     })
                                 </script>
                             </div>
