@@ -1,104 +1,241 @@
 ﻿<!DOCTYPE html>
 <html>
 <head id="home">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Archivo Black' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
     <link rel="shortcut icon" href="#"> <!--favicon-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
-
 <body>
-    <ul id="navbar">
-        <li style="float:left"><a class="navlink" id="header" href="#home" style="position:relative; top:5%; left:3%"><img class="icon" src="assets/sqlogo.svg"></a></li>
-        <li><a class="navlink" href="#about active">About</a></li>
-        <li><a class="navlink" href="#contact">Contact</a></li>
-    </ul>
+
+    <style>
+        h1 {
+            font-family: 'Archivo Black';
+            color: #2F2A29;
+            font-size: 4rem;
+            padding: 0px;
+        }
+
+        h2 {
+            font-family: 'Rubik';
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 0px;
+        }
+
+        h3 {
+            font-family: 'Rubik';
+            color: #2F2A29;
+            font-size: 1.5rem;
+            padding: 0px;
+        }
+
+        p {
+            font-family: 'Rubik';
+            color: #2F2A29;
+            opacity: 60%;
+            font-size: 1.5rem;
+            padding: 0px;
+        }
+
+        .text {
+            font-family: 'Rubik';
+            color: #2F2A29;
+            font-size: 1.5rem;
+            padding: 0px;
+        }
+
+        button {
+            background-color: #E32800;
+            border: none;
+            border-radius: 5px;
+            padding: 0rem 2rem;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            line-height: 0px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+            button:hover {
+                opacity: 10%;
+                background-color: black;
+            }
+
+        form button {
+            background-color: #E32800;
+            border: none;
+            border-radius: 5px;
+            padding: 0rem 2rem;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            line-height: 0px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+            form button:hover {
+                opacity: 10%;
+                background-color: black;
+            }
+
+        form input {
+            height: 4rem;
+            width: 20rem;
+            font-family: 'Rubik';
+            color: #2F2A29;
+            font-size: 1.5rem;
+            opacity: 30%;
+        }
+    </style>
+
+    <!--###########################################################################################-->
+    <!-- -----------------------------------------NAVBAR------------------------------------------ -->
+    <!--###########################################################################################-->
+    <nav id="navbar" class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navlink" id="header" href="#home" style="position:relative; top:5%; left:3%">
+                    <img style="margin-top:1rem;" class="icon" src="assets/sqlogo.svg">
+                </a>
+            </div>
+            <ul class="nav navbar-nav topnav-right">
+                <li class="nav_link active"><a class="navlink" href="#about">About</a></li>
+                <li class="nav_link"><a class="navlink" href="#how-it-works">How It Works</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <script>
+        // Add active class to the current button (highlight it)
+        var navbar = document.getElementById("navbar");
+        var links = document.getElementsByClassName("nav_link");
+        for (var i = 0; i < links.length; i++) {
+            links[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+    </script>
+    <!--###########################################################################################-->
+    <!-- -----------------------------------------NAVBAR END-------------------------------------- -->
+    <!--###########################################################################################-->
+
 
     <div class="outer home">
-            <div class="inner section1" style="margin-block: 2vw; text-align:center; align-content: center;">
-                <div style="width: 65%; max-width: fit-content; margin-left: auto; margin-right: auto;">
-                    <h1>Find and schedule events in one place</h1>
-                </div>
-
-                <div style="width: 70%; max-width: fit-content; margin-left: auto; margin-right: auto;">
-                    <p style="display:inline">
-                        Young professionals use
-                    </p>
-                    <p style="margin-block: 2vw; display: inline" class="special"> Knockin </p>
-                    <p style="display:inline">
-                        to simplify their event search and scheduling process,
-                        eliminating the need for hours of browsing and endless tab jumping or scrolling.
-                    </p>
-                </div>
-                
-                <div>
-                    <button style="display: inline-grid; margin-block:2vw">
-                        <a style="display:inline; text-decoration:none; color:white;" href="https://calendar.app.google/RwhcAeVuk3QtTe8Z7">
-                            <h2 style="line-height: 50%; display: inline-flex; align-content: center; align-items: center ">
-                                BOOK A DEMO
-                            </h2>
-                        </a>
-                    </button>
-                </div>
+        <div class="inner section1" style="margin-block: 2vw; text-align:center; align-content: center;">
+            <div style="width: 65%; max-width: fit-content; margin-left: auto; margin-right: auto;">
+                <h1>Find and schedule events in one place</h1>
             </div>
 
-            <div id="about" class="inner section2" style="margin-left: 1vw; margin-right: 1vw; text-align: center; align-content: center; display: inline-block table">
-
-
-
-                <div class="calendar-container" id="calendar-container" style="font-family: 'Rubik'; display: table-cell; ">
-                    <div class="calendar-header" id="calendar-header">
-                        <div class="calendar-title" id="calendar-title"></div>
-                        <div class="calendar-actions" id="calendar-actions" style="display:inline-block;">
-                            <button style="width:2rem;" class="calendar-action-button" id="calendar-action-button-prev">
-                                &lt;
-                            </button>
-                            <button style="font-weight:bold; width:40%" class="calendar-action-button-custom" id="calendar-action-button-today">
-                                TODAY
-                            </button>
-                            <button style="width: 2rem;" class="calendar-action-button" id="calendar-action-button-next">
-                                &gt;
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="calendar" id="calendar">
-                        <div class="calendar-days" id="calendar-days">
-                        </div>
-                        <div class="calendar-body" id="calendar-body">
-                        </div>
-                    </div>
-                </div>
-                <div class="checksidebar" id="checkboxes" style=";">
-                    <input type="checkbox" name="a">
-                    <input type="checkbox" name="a">
-                    <input type="checkbox" name="a">
-                    <input type="checkbox" name="a">
-                </div>
-                <script type="module" src="index.js" async defer></script>
-            </div>
-
-            <div id="contact" class="inner section3">
-                <p style="text-align:left; margin-left:5%; margin-top:10%; margin-bottom:30px">
-                    Contact us at eh111@wellesley.edu and yw4@wellesley.edu
+            <div style="width: 70%; max-width: fit-content; margin-left: auto; margin-right: auto;">
+                <p style="display:inline">
+                    Simplify your event searching and scheduling process with
                 </p>
-                <br />
+                <p style="margin-block: 2vw; display: inline" class="special"> Knockin </p>
+                <p style="display:inline">
+                    <br /> and eliminate the need for hours of browsing and endless tab jumping and scrolling.
+                </p>
             </div>
-    </div>
-</body>
 
-<script>
-    // Add active class to the current button (highlight it)
-    var navbar = document.getElementById("navbar");
-    var links = header.getElementsByClassName("navlink");
-    for (var i = 0; i < links.length; i++) {
-        links[i].addEventListener("click", function () {
-            var current = document.getElementsByClassName("active");
-            current[0].className = current[0].className.replace(" active", "");
-            this.className += " active";
-        });
-    }
-</script>
+            <div>
+                <button style="display: inline-grid; margin-block:2vw">
+                    <a style="display:inline; text-decoration:none; color:white;" href="https://calendar.app.google/RwhcAeVuk3QtTe8Z7">
+                        <h2 style="color:white; margin-top: revert; display: inline-flex; align-content: center; align-items: center ">
+                            BOOK A DEMO
+                        </h2>
+                    </a>
+                </button>
+            </div>
+        </div>
+
+        <div id="about" class="inner section2" style="margin-left: 1vw; margin-right: 1vw; text-align: center; align-content: center; display: inline-block table">
+            <h2 style="text-align:left;">
+                About Us
+            </h2>
+            <p style="text-align:left;">
+                We heard from young professionals and from our family and friends that they have a hard time <br />
+                finding in-person events and opportunities that fit their interests and their schedules.We’re <br />
+                building a Chrome and Outlook add-on for digital calendars that centralizes event details: <br />
+                browsing and booking into one place.
+            </p>
+            <br />
+        </div>
+
+        <div id="how-it-works" class="inner section2" style="margin-left: 1vw; margin-right: 1vw; text-align: center; align-content: center; display: inline-block table">
+            <h2 style="text-align:left;">
+                How it Works
+            </h2>
+            <p style="text-align:left;">
+                1) Select a time range <br />
+                2) Choose your top 3 interests <br />
+                3) Pick your favorite events <br />
+            </p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/RrmvuCw_8p8?si=AJNbaxYqq0UrIQDk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div style="clear: both"></div>
+
+        <!-- FOOTER -->
+        <footer style="margin-top:10%;" class="w-100 py-4 flex-shrink-0">
+            <div class="container py-4">
+                <div class="row gy-4 gx-5">
+                    <div class="col-lg-4 col-md-6">
+                        <br />
+
+                        <p class="small text-muted">For any general inquiries, contact us at</p>
+                        <a>knockin.info@gmail.com</a>
+                        <p class="small text-muted mb-0">&copy; Copyrights. All rights reserved. 2024</p>
+                    </div>
+                    <!--<div class="col-lg-2 col-md-6">
+                    <h5 class="text-white mb-3">Quick links</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Get started</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>-->
+                    <div class="col-lg-4 col-md-6">
+                        <h5 class="text-white mb-3">Newsletter</h5>
+                        <p class="small text-muted">Join our waitlist and stay informed on our latest updates and releases.</p>
+                        <form action="#">
+                            <div class="input-group mb-3">
+                                <form id="EmailForm" name="submit-to-google-sheet">
+                                    <input type="email" name="Email" placeholder="Your email address" required />
+                                    <button type="submit">
+                                        <h2 style="margin-top: revert; color: white; display: inline-flex; align-content: center; align-items: center ">
+                                            SUBMIT
+                                        </h2>
+                                    </button>
+                                </form>
+                                <script>
+                                    const scriptURL = "https://script.google.com/macros/s/AKfycbzKpX85B1uLHzJOFSPgVZMrQOvRr_r6ynQTC_HKcxXSIFJw2aMbUMrSIyKcpAAmMkmg/exec"
+                                    const form = document.forms['submit-to-google-sheet']
+
+                                    form.addEventListener('submit', e => {
+                                        e.preventDefault()
+                                        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                                            .then(response => console.log('Success!', response))
+                                            .catch(error => console.error('Error!', error.message))
+                                        document.getElementById("EmailForm").reset();
+                                    })
+                                </script>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--FOOTER END-->
+</body>
 </html>
