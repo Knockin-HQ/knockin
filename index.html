@@ -180,7 +180,7 @@
                 2) Choose your top 3 interests <br />
                 3) Pick your favorite events <br />
             </p>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/RrmvuCw_8p8?si=AJNbaxYqq0UrIQDk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
         </div>
 
         <div style="clear: both"></div>
@@ -219,15 +219,14 @@
                                     </button>
                                 </form>
                                 <script>
-                                    const scriptURL = "https://script.google.com/macros/s/AKfycbzKpX85B1uLHzJOFSPgVZMrQOvRr_r6ynQTC_HKcxXSIFJw2aMbUMrSIyKcpAAmMkmg/exec"
-                                    const form = document.getElementById("EmailForm");
+                                    const scriptURL = "https://script.google.com/macros/s/AKfycbzTihX5Mo43-7bjswUBw3mWjqj_6u44i0qHsPaIbjEuOKwbEEiifV9HgfH0Oc1givng/exec"
+                                    const form = document.forms['submit-to-google-sheet']
 
                                     form.addEventListener('submit', e => {
                                         e.preventDefault()
                                         fetch(scriptURL, { method: 'POST', body: new FormData(form) })
                                             .then(response => console.log('Success!', response))
                                             .catch(error => console.error('Error!', error.message))
-                                       
                                     })
                                 </script>
                             </div>
