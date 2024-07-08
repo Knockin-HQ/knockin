@@ -38,3 +38,12 @@ footer {
     background: #2F2A29;
 }
 /*************footer End*****************/
+
+
+.right-picture {
+    float: right;
+}
+
+.left-picture {
+    float:left;
+}
