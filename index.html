@@ -24,7 +24,7 @@
 
         h2 {
             font-family: 'Rubik';
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: bold;
             padding: 0px;
         }
@@ -104,7 +104,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navlink" id="header" href="#home" style="position:relative; top:5%; left:3%">
-                    <img style="margin-top:1rem;" class="icon" src="assets/sq_logo.svg">
+                    <img style="width:2.5rem; margin-top:1rem;" class="icon" src="assets/sq_logo.svg">
                 </a>
             </div>
             <ul class="nav navbar-nav topnav-right">
@@ -133,11 +133,11 @@
 
     <div class="outer home">
         <div class="inner section1" style="margin-block: 2vw; text-align:center; align-content: center;">
-            <div style="width: 65%; max-width: fit-content; margin-left: auto; margin-right: auto;">
+            <div style="width: 65%; max-width: fit-content; margin-top:7%; margin-left: auto; margin-right: auto;">
                 <h1>Find and schedule events in one place</h1>
             </div>
 
-            <div style="width: 70%; max-width: fit-content; margin-left: auto; margin-right: auto;">
+            <div style="margin-top:5%; width: 70%; max-width: fit-content; margin-left: auto; margin-right: auto;">
                 <p style="display:inline">
                     Simplify your event searching and scheduling process with
                 </p>
@@ -159,29 +159,86 @@
         </div>
 
         <div id="about" class="inner section2" style="margin-left: 1vw; margin-right: 1vw; text-align: center; align-content: center; display: inline-block table">
-            <h2 style="text-align:left;">
+            <img style="width:40rem;" class="left-picture" src="assets/mock_up 1.png" alt="mock up 1">
+            <h2 style="margin-top:10%; margin-left: 40%; text-align: left;">
                 About Us
             </h2>
-            <p style="text-align:left;">
+            <p style="margin-left: 40%; text-align: left; ">
                 We heard from young professionals and from our family and friends that they have a hard time <br />
-                finding in-person events and opportunities that fit their interests and their schedules. So we're <br />
-                building a Chrome and Outlook add-on for digital calendars that centralizes event details: <br />
+                finding events and opportunities that fit their interests and their schedules.
+
+                <br />
+                <br />
+
+                So we're building a Chrome and Outlook add-on for digital calendars that centralizes event details: <br />
                 browsing and booking into one place.
+
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                COMING SOON TO<br />
+                <a href="https://workspace.google.com/u/0/marketplace">
+                    <img style="width:40rem;" class="left-picture" src="assets/google_ws_mkplace.png" alt="Google Workspace Marketplace">
+                </a>
             </p>
+
+            <!-- Display the countdown timer in an element -->
+            <h2 id="demo" class="special"></h2>
+
+            <script>
+                // Set the date we're counting down to
+                var countDownDate = new Date("Jul 12, 2024 23:59:59").getTime();
+
+                // Update the count down every 1 second
+                var x = setInterval(function () {
+
+                    // Get today's date and time
+                    var now = new Date().getTime();
+
+                    // Find the distance between now and the count down date
+                    var distance = countDownDate - now;
+
+                    // Time calculations for days, hours, minutes and seconds
+                    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // Display the result in the element with id="demo"
+                    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+                        + minutes + "m " + seconds + "s ";
+
+                    // If the count down is finished, write some text
+                    if (distance < 0) {
+                        clearInterval(x);
+                        document.getElementById("demo").innerHTML = "EXPIRED";
+                    }
+                }, 1000);
+            </script>
             <br />
-            <img class="left-picture" src="mock_up 1.png" alt="mock up 1">/>
+
+            <a target="_blank" href="https://calendar.google.com/calendar/event?action=TEMPLATE&amp;tmeid=MjdzYmpxM2dhY2wwcWNya2kxdm80NHVkZDggZWgxMTFAd2VsbGVzbGV5LmVkdQ&amp;tmsrc=eh111%40wellesley.edu"><img border="0" src="https://www.google.com/calendar/images/ext/gc_button1_en.gif"></a>
+
+            <br />
+
         </div>
 
         <div id="how-it-works" class="inner section2" style="margin-left: 1vw; margin-right: 1vw; text-align: center; align-content: center; display: inline-block table">
-            <h2 style="text-align:left;">
+            <h2 style="text-align:center;">
                 How it Works
             </h2>
-            <p style="text-align:left;">
-                1) Select a time range <br />
+            <p style="text-align:center;">
+                1) Select a time range and desired distance<br />
                 2) Choose your top 3 interests <br />
                 3) Pick your favorite events <br />
             </p>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=-4S9tVvMJt2cJrfV&amp;list=PL5FaU313nXhZ2qW6bbc-N9fEjgonWylP7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe style="margin-top:5%; width:60%; height:500px" src="https://www.youtube.com/embed/videoseries?si=-4S9tVvMJt2cJrfV&amp;list=PL5FaU313nXhZ2qW6bbc-N9fEjgonWylP7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
 
         <div style="clear: both"></div>
@@ -195,7 +252,7 @@
 
                         <p class="small text-muted">For any general inquiries, contact us at</p>
                         <a>knockin.info@gmail.com</a>
-                        <p class="small text-muted mb-0">&copy; Copyrights. All rights reserved. 2024</p>
+                        <p class="small text-muted mb-0">&copy; All rights reserved. 2024</p>
                     </div>
                     <!--<div class="col-lg-2 col-md-6">
                     <h5 class="text-white mb-3">Quick links</h5>
@@ -232,6 +289,8 @@
                                     })
 
                                 </script>
+                            <br />
+                            <br />
                             </div>
                     </div>
                 </div>
