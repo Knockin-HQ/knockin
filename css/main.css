@@ -2085,10 +2085,15 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
 }
 
-#mobile-nav-toggle i {
-  color: #fff;
-  font-weight: 900;
-}
+    #mobile-nav-toggle i {
+        color: black;
+        font-weight: 900;
+    }
+
+    #mobile-nav-toggle.header-scrolled i {
+        color: #fff;
+        font-weight: 900;
+    }
 
 @media (max-width: 800px) {
   #mobile-nav-toggle {
