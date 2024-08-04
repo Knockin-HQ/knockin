@@ -48,110 +48,47 @@ footer {
     float:left;
 }
 
-.contain {
-    width: 100%;
+.vid-grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    margin-left:20%;
+    margin-right:20%;
 }
 
-.row {
-    overflow: scroll;
-    width: 100%;
-}
-
-.row__inner {
-    transition: 450ms transform;
-    font-size: 0;
-    white-space: nowrap;
-    margin: 70.3125px 0;
-    padding-bottom: 10px;
-}
-
-.tile {
-    position: relative;
+.animate-text span{
+    font-size: 40px;
+    color: #ff2c45;
+    font-weight: 700;
     display: inline-block;
-    width: 250px;
-    height: 140.625px;
-    margin-right: 10px;
-    font-size: 20px;
-    cursor: pointer;
-    transition: 450ms all;
-    transform-origin: center left;
+    line-height: 46px;
+    display: none;
 }
 
-.tile__img {
-    width: 250px;
-    height: 140.625px;
-    -o-object-fit: cover;
-    object-fit: cover;
+.animate-text span{
+    display: block;
+    animation: textIn .5s ease;
 }
 
-.tile__details {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-    font-size: 10px;
-    opacity: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
-    transition: 450ms opacity;
-}
-
-    .tile__details:after,
-    .tile__details:before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        display: #000;
+    .animate-text span{
+        animation: textOut .5s ease;
     }
 
-    .tile__details:after {
-        margin-top: -25px;
-        margin-left: -25px;
-        width: 50px;
-        height: 50px;
-        /*border: 3px solid #ecf0f1;*/
-        line-height: 50px;
-        text-align: center;
-        border-radius: 100%;
-        /*background: rgba(0,0,0,0.5);*/
-        z-index: 1;
+@keyframes textIn {
+    0% {
+        transform: translateY(100%);
     }
 
-    .tile__details:before {
-        /*content: "play";*/
-        left: 0;
-        width: 100%;
-        font-size: 30px;
-        margin-left: 7px;
-        margin-top: -18px;
-        text-align: center;
-        z-index: 2;
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes textOut {
+    0% {
+        transform: translateY(0%);
     }
 
-.tile:hover .tile__details {
-    opacity: 1;
-}
-
-.tile__title {
-    position: absolute;
-    bottom: 0;
-    padding: 10px;
-}
-
-.row__inner:hover {
-    transform: translate3d(-62.5px, 0, 0);
-}
-
-    .row__inner:hover .tile {
-        opacity: 0.3;
+    100% {
+        transform: translateY(-100%);
     }
-
-        .row__inner:hover .tile:hover {
-            transform: scale(1.5);
-            opacity: 1;
-        }
-
-.tile:hover ~.tile {
-    transform: translate3d(125px, 0, 0);
 }
