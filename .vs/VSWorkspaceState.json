@@ -3,8 +3,10 @@
     "",
     "\\.github",
     "\\.github\\workflows",
-    "\\assets"
+    "\\assets",
+    "\\fonts",
+    "\\js\\vendor"
   ],
-  "SelectedNode": "\\index.js",
+  "SelectedNode": "\\index.html",
   "PreviewInSolutionExplorer": false
 }
