@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Finder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* General reset and font */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rubik', sans-serif;
+        }
+        body {
+            background-color: #f7f8fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 10px;
+            font-smooth: antialiased;
+        }
+        /* Container styling */
+        .container {
+            background-color: #fff;
+            width: 100%;
+            max-width: 50%;
+            border-radius: 12px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: left;
+        }
+        h1 {
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        .statement {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            font-size: 16px;
+            color: #333;
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            outline: none;
+            width: auto;
+            padding: 4px;
+            min-width: 150px;
+            transition: border-color 0.2s;
+        }
+        input[type="text"]:focus {
+            border-color: #0070f3;
+        }
+        .add-button, .remove-button {
+            font-size: 20px;
+            cursor: pointer;
+            vertical-align: middle;
+        }
+        .add-button {
+            color: #0070f3;
+            margin-left: 10px;
+        }
+        .remove-button {
+            color: red;
+            margin-left: 10px;
+        }
+        .filter-group {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .submit-button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #0070f3;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.2s;
+        }
+        .submit-button:hover {
+            background-color: #005bb5;
+        }
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin: 5px 0;
+        }
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            background-color: #0070f3;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+        .tag .remove-tag {
+            margin-left: 8px;
+            font-size: 12px;
+            cursor: pointer;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Event Finder</h1>
+        
+        <form id="dynamicForm">
+            <p class="statement">I'm looking for events that are 
+                <input style="display:inline" type="text" name="input1" placeholder="Enter a keyword" required>
+            </p>
+            
+            <!-- Container for additional fields -->
+            <div id="additionalFields"></div>
+
+            <!-- Add button always at the end -->
+            <span class="add-button" onclick="showFilterOptions()">+</span>
+
+            <button type="submit" class="submit-button">Find Events</button>
+        </form>
+    </div>
+
+    <script>
+        let fieldCount = 1;
+
+        // Show filter options when clicking the "+" button
+        function showFilterOptions() {
+            const options = ["Time", "Interests", "Venue", "Cost", "Custom"];
+            const select = document.createElement("select");
+            select.classList.add("filter-type");
+            select.onchange = () => addField(select.value);
+
+            const defaultOption = document.createElement("option");
+            defaultOption.value = "";
+            defaultOption.textContent = "Select a filter";
+            defaultOption.disabled = true;
+            defaultOption.selected = true;
+            select.appendChild(defaultOption);
+
+            options.forEach(option => {
+                const opt = document.createElement("option");
+                opt.value = option;
+                opt.textContent = option === "Custom" ? "Add Custom Field" : `+${option}`;
+                select.appendChild(opt);
+            });
+
+            document.getElementById("additionalFields").appendChild(select);
+        }
+
+        // Add a new filter field based on the selected type
+        function addField(type) {
+            fieldCount++;
+
+            const select = document.querySelector(".filter-type");
+            if (select) select.remove();
+
+            const filterGroup = document.createElement("div");
+            filterGroup.classList.add("filter-group");
+
+            if (type === "Interests") {
+                const label = document.createElement("span");
+                label.textContent = "and interests are ";
+                filterGroup.appendChild(label);
+
+                // Tag container for interests
+                const tagContainer = document.createElement("div");
+                tagContainer.classList.add("tag-container");
+                tagContainer.id = `tagContainer${fieldCount}`;
+
+                const input = document.createElement("input");
+                input.type = "text";
+                input.placeholder = "Add an interest";
+                input.oninput = (e) => checkForComma(e, tagContainer);
+
+                filterGroup.appendChild(tagContainer);
+                filterGroup.appendChild(input);
+            } else if (type === "Custom") {
+                const input = document.createElement("input");
+                input.type = "text";
+                input.name = `custom${fieldCount}`;
+                input.placeholder = "Enter your custom filter";
+                filterGroup.appendChild(input);
+            } else {
+                const label = document.createElement("span");
+                label.textContent = `and ${type.toLowerCase()} is `;
+                filterGroup.appendChild(label);
+
+                const input = document.createElement("input");
+                input.type = "text";
+                input.name = `${type.toLowerCase()}${fieldCount}`;
+                input.placeholder = `Enter ${type.toLowerCase()}`;
+                filterGroup.appendChild(input);
+            }
+
+            const removeButton = document.createElement("span");
+            removeButton.classList.add("remove-button");
+            removeButton.innerHTML = "−";
+            removeButton.onclick = () => filterGroup.remove();
+
+            filterGroup.appendChild(removeButton);
+            document.getElementById("additionalFields").appendChild(filterGroup);
+        }
+
+        // Function to add tags when the user types a comma
+        function checkForComma(event, container) {
+            const input = event.target;
+            const tagText = input.value.trim();
+
+            if (tagText.endsWith(",")) {
+                const trimmedTagText = tagText.slice(0, -1).trim();
+                
+                if (trimmedTagText) {
+                    const tag = document.createElement("span");
+                    tag.classList.add("tag");
+                    tag.textContent = trimmedTagText;
+
+                    const removeTag = document.createElement("span");
+                    removeTag.classList.add("remove-tag");
+                    removeTag.textContent = "×";
+                    removeTag.onclick = () => tag.remove();
+
+                    tag.appendChild(removeTag);
+                    container.appendChild(tag);
+                    input.value = "";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
